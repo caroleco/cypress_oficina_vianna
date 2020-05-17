@@ -1,5 +1,5 @@
 {
     "baseUrl": "https://the-internet.herokuapp.com",
     "defaultCommandTimeout": 30000,
-    "testFiles": "**/*.{feature, spec.js}"
+    "testFiles": "**/*.{feature,features,spec.js}"
 }
