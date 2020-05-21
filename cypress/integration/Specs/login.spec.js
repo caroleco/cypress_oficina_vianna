@@ -1,3 +1,4 @@
+/// <reference types="Cypress" />
 describe('Form Authentication',()=>{
     beforeEach(()=>{
         cy.visit('')
