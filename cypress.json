@@ -1,5 +1,7 @@
 {
     "baseUrl": "https://the-internet.herokuapp.com",
     "defaultCommandTimeout": 30000,
-    "testFiles": "**/*.{feature,features,spec.js}"
+    "testFiles": "**/*.{feature,features,spec.js}",
+    "viewportWidth": 1300,
+    "viewportHeight": 660
 }
