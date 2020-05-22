@@ -1,17 +1,16 @@
 import { When, Then, And } from "cypress-cucumber-preprocessor/steps";
 
-When('faço login com {string} e {string}', (login, senha) => {
-    cy.get('input[name=username]').type(login)
-    cy.get('#password').type(senha)
-    cy.get('button').contains('Login').click()
+When('faço login com {string}', (login) => {
+    cy.get('input[name=user-id]').type(login)
+    cy.get('button').contains('Entrar').click()
 })
 
-Then('sistema deve ser redirecionado para página secure', () => {
-    cy.url().should('contain', 'secure')
+Then('sistema deve ser redirecionado para página profile', () => {
+    cy.url().should('contain', 'profile')
 })
 
-And('devo ver a mensagem de sucesso {string}', (success) => {
-    cy.get('.success').should('contain', success)
+And('devo ver a mensagem {string}', (mensagem) => {
+    cy.get('header span').should('contain', mensagem)
 })
 
 Then('devo ver alerta de mensagem {string}', (mensagem) => {

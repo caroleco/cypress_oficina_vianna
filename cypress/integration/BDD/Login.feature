@@ -4,18 +4,15 @@ Feature: Autenticação do sistema
     válidos e inválidos.
 
     Scenario: Acesso permitido
-        When faço login com "tomsmith" e "SuperSecretPassword!"
-        Then sistema deve ser redirecionado para página secure
-        And devo ver a mensagem de sucesso "You logged into a secure area!"
+        When faço login com "6cbfd3c4"
+        Then sistema deve ser redirecionado para página profile
+        And devo ver a mensagem "Bem vinda, APAD"
 
     Scenario Outline: Login Negado
-        When faço login com <login> e <senha>
-        Then devo ver alerta de mensagem <mensagem>
+        When faço login com <login>
+        Then devo ver alerta de mensagem "Falha no Login. Tente novamente."
 
         Examples:
-            | login      | senha                  | mensagem                    |
-            | "tomsmith" | "secret"               | "Your password is invalid!" |
-            | "teste"    | "SuperSecretPassword!" | "Your username is invalid!" |
-            | " "        | "SuperSecretPassword!" | "Your username is invalid!" |
-            | "tomsmith" | " "                    | "Your password is invalid!" |
-            | "teste"    | "teste"                | "Your username is invalid!" |
+            | login   |
+            | " "     |
+            | "tonystark" |

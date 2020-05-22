@@ -10,13 +10,20 @@ describe('ok', () => {
         cy.get('#city').type('Juiz de Fora')
         cy.get('#uf').type('MG')
         cy.contains('Cadastrar').click()
-        cy.get('.success').should('contain','Seu ID de acesso')
+        cy.get('.success').should('contain', 'Seu ID de acesso')
     })
 
-    it('Login',()=>{
-        cy.get('input[name=user-id]').type('56163d6c394f85d5')
-        cy.get('button').contains('Entrar').click()
-        cy.url().should('include','profile')
+    it.only('Login', () => {
+        cy.server()
+        cy.route('POST', 'http://localhost:3333/session').as('postSession')
+
+        cy.get('input[name=user-id]').type('6cbfd3c4')
+
+        cy.get('button').contains('Entrar').click().wait('@postSession').then((xhr) => {
+            assert.equal(xhr.response.body.name, 'APAD')
+        }).and('have.property', 'status', 200)
+
+        cy.url().should('include', 'profile')
         cy.get('.exit').click()
         cy.get('h1').contains('Faça seu logon')
 

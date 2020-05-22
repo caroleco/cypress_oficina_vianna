@@ -5,13 +5,20 @@ describe('Novo caso', () => {
         cy.get('button').contains('Entrar').click()
     })
 
-    it('Cadastrando', () => {
+    it('Cadastrando com sucesso', () => {
         cy.get('#new-incident').click()
         cy.get('input[placeholder=Título]').type('ok title')
         cy.get('textarea').type('Tetando a aplicação')
         cy.get('#valor').type('120.00')
         cy.get('button[type=submit]').click()
-        cy.get('li').should('contain','ok title')
-        cy.get('li strong').contains('CASO').next().should('contain','ok title')
+        cy.get('li').should('contain', 'ok title')
+        cy.get('li strong').contains('CASO').next().should('contain', 'ok title')
+    })
+    it('Cadastrando sem valor e verificando mensagem de erro', () => {
+        cy.get('#new-incident').click()
+        cy.get('input[placeholder=Título]').type('ok title')
+        cy.get('textarea').type('Testando a aplicação')
+        cy.get('button[type=submit]').click()
+        cy.get('p.error').should('contain', 'Ops! Incidente não foi cadastrado.')
     })
 })
