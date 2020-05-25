@@ -3,7 +3,7 @@ describe('Login no sistema', () => {
         cy.visit('')
     })
 
-    it('Login com fixture', () => {
+    it('Login com sucesso', () => {
         cy.server()
         cy.route('POST', 'http://localhost:3333/session').as('postSession')
 
@@ -18,6 +18,13 @@ describe('Login no sistema', () => {
         cy.url().should('include', 'profile')
         cy.get('.exit').click()
         cy.get('h1').contains('Faça seu logon')
+    })
+
+    it('Login com ID incorreto', () => {
+        cy.get('input[name=user-id]').type('tonystark')
+        cy.get('button').contains('Entrar').click()
+        cy.get('.error').should('contain', 'Falha no Login. Tente novamente.')
+
     })
 
 })
