@@ -1,4 +1,4 @@
-describe('ok', () => {
+describe('Login no sistema', () => {
     beforeEach(() => {
         cy.visit('')
     })
