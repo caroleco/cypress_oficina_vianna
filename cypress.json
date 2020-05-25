@@ -1,6 +1,0 @@
-{
-    "baseUrl": "https://the-internet.herokuapp.com",
-    "testFiles": "**/*.{feature,features,spec.js}",
-    "viewportWidth": 1300,
-    "viewportHeight": 660
-}
